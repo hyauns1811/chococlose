@@ -1,66 +1,66 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from 'next/link';
+import ProductCard from '@/components/ProductCard';
+import { products, categories } from '@/data/products';
 
 export default function Home() {
+  const featuredProducts = products.slice(0, 3);
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <section className="hero">
+        <div className="hero-content">
+          <h1>Conquer the Outdoors</h1>
+          <p>Discover our premium selection of family tents, outdoor grills, and eco-friendly mowers designed for your perfect backyard and beyond.</p>
+          <Link href="/shop" className="btn btn-secondary">Shop Now</Link>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="section container">
+        <h2 className="section-title">Shop by Category</h2>
+        <div className="grid">
+          {categories.map(category => (
+            <Link href={`/category/${category.slug}`} key={category.id} className="product-card">
+              <img src={category.image} alt={category.name} className="product-img" />
+              <div className="product-info" style={{ textAlign: 'center' }}>
+                <h3 className="product-title">{category.name}</h3>
+                <span style={{ color: 'var(--secondary-color)', fontWeight: '600' }}>Explore Collection &rarr;</span>
+              </div>
+            </Link>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="section" style={{ backgroundColor: 'var(--light-gray)' }}>
+        <div className="container">
+          <h2 className="section-title">Featured Products</h2>
+          <div className="grid">
+            {featuredProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+          <div className="text-center mt-4">
+            <Link href="/shop" className="btn">View All Products</Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section container text-center">
+        <h2 className="section-title">Why Choose Nature's Peak?</h2>
+        <div className="grid">
+          <div>
+            <h3 style={{ fontSize: '1.5rem', marginBottom: '15px' }}>Premium Quality</h3>
+            <p style={{ color: '#555' }}>We source only the highest-grade materials to ensure durability and reliability in any weather condition.</p>
+          </div>
+          <div>
+            <h3 style={{ fontSize: '1.5rem', marginBottom: '15px' }}>Fast Shipping</h3>
+            <p style={{ color: '#555' }}>Standard $9.99 shipping with 1-2 days handling and 3-7 days delivery directly to your door.</p>
+          </div>
+          <div>
+            <h3 style={{ fontSize: '1.5rem', marginBottom: '15px' }}>Secure Payments</h3>
+            <p style={{ color: '#555' }}>Shop with confidence using our 100% secure PayPal checkout system.</p>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
