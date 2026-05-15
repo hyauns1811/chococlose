@@ -27,6 +27,7 @@ export default function Footer() {
             <h4>Company & Policies</h4>
             <ul>
               <li><Link href="/about">About Us</Link></li>
+              <li><Link href="/contact">Contact Us</Link></li>
               <li><Link href="/policies/shipping">Shipping Policy</Link></li>
               <li><Link href="/policies/return-refund">Return & Refund</Link></li>
               <li><Link href="/policies/payment">Payment Policy</Link></li>
