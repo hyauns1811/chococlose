@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 export const metadata = {
   title: 'About Us | ChocoClose',
   description: 'Learn more about ChocoClose and our passion for providing premium outdoor, camping, and patio equipment.',
